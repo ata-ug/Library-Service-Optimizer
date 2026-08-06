@@ -1,0 +1,87 @@
+book_id,isbn,title,author,category,shelf_location_id,total_copies,available_copies
+1,9780435905255,Things Fall Apart,Chinua Achebe,Ghanaian Collection (Africana),9,2,0
+2,9780435905910,The Beautyful Ones Are Not Yet Born,Ayi Kwei Armah,Ghanaian Collection (Africana),9,2,2
+3,,Fragments,Ayi Kwei Armah,Ghanaian Collection (Africana),9,1,0
+4,9780435905040,The Healers,Ayi Kwei Armah,Ghanaian Collection (Africana),9,5,4
+5,9780435900615,Efuru,Flora Nwapa,Literature & Languages,29,1,1
+6,9780704342134,Changes: A Love Story,Ama Ata Aidoo,Literature & Languages,29,3,0
+7,,No Sweetness Here,Ama Ata Aidoo,Literature & Languages,29,3,1
+8,9780582642083,Our Sister Killjoy,Ama Ata Aidoo,Literature & Languages,29,1,0
+9,9789964302097,The Dilemma of a Ghost,Ama Ata Aidoo,Literature & Languages,29,2,1
+10,9780582642090,Anowa,Ama Ata Aidoo,Literature & Languages,29,1,0
+11,9780435905699,I Will Marry When I Want,Ngugi wa Thiong'o,Literature & Languages,29,1,1
+12,9780435905435,The River Between,Ngugi wa Thiong'o,Literature & Languages,29,1,0
+13,,Chike and the River,Chinua Achebe,Ghanaian Collection (Africana),9,1,0
+14,9780435900943,Kinsman and Foreman,Kofi Awoonor,African Studies,28,3,3
+15,,"This Earth, My Brother",Kofi Awoonor,African Studies,28,1,0
+16,9780821419372,Ghana: A Political History from Pre-European to Modern Times,David Owusu-Ansah,History,41,1,0
+17,9780901787968,The Autobiography of Kwame Nkrumah,Kwame Nkrumah,History,41,2,1
+18,9780717801397,Neo-Colonialism: The Last Stage of Imperialism,Kwame Nkrumah,Political Science & Governance,40,1,0
+19,,Africa Must Unite,Kwame Nkrumah,Political Science & Governance,40,3,2
+20,9780714630302,Politics in Ghana 1946-1960,David Apter,Political Science & Governance,40,3,1
+21,9789964302448,Introduction to Company Law in Ghana,Kwame Frimpong,Law,16,1,0
+22,,The Ghana Law Reports 2018,Ghana Law Reports Editorial Board,Ghana Law Reports Reserve,45,2,0
+23,9789988159012,Land Law in Ghana,Kwame Gyan,Law,16,3,0
+24,9789988552028,Family Law in Ghana,Henrietta Mensa-Bonsu,Law,16,3,0
+25,9789988862363,Constitutional Law of Ghana,S.Y. Bimpong-Buta,Law,16,3,1
+26,9780133799101,Introduction to Data Structures and Algorithms,Robert Sedgewick,Computer Science & IT,14,2,2
+27,9780262033848,Introduction to Algorithms,Thomas H. Cormen,Computer Science & IT,14,3,3
+28,9780321523068,Database Systems: A Practical Approach,Thomas Connolly,Computer Science & IT,14,5,2
+29,9781260440225,Java Programming: A Beginner's Guide,Herbert Schildt,Computer Science & IT,14,2,2
+30,9780132126953,Computer Networks,Andrew S. Tanenbaum,Computer Science & IT,14,2,1
+31,,Object-Oriented Software Engineering,Bernd Bruegge,Computer Science & IT,14,2,0
+32,9780073383095,Discrete Mathematics and Its Applications,Kenneth Rosen,Mathematics & Statistics,30,5,1
+33,9780132745659,Statistics for Business and Economics,Paul Newbold,Mathematics & Statistics,30,4,1
+34,9781285741550,Calculus: Early Transcendentals,James Stewart,Mathematics & Statistics,30,1,1
+35,9780321982384,Linear Algebra and Its Applications,David C. Lay,Mathematics & Statistics,30,3,3
+36,9781285165875,Principles of Economics,N. Gregory Mankiw,Economics,20,2,2
+37,,The Structure and Growth of the Ghanaian Economy,Douglas Rimmer,Economics,20,2,1
+38,9780691017068,Development Economics,Debraj Ray,Economics,20,3,0
+39,9789964303803,Money and Banking in Ghana,Ernest Aryeetey,Economics,20,1,1
+40,9781119594660,Financial Accounting,Jerry Weygandt,Business Administration & Accounting,15,1,1
+41,9780134492513,Principles of Marketing,Philip Kotler,Business Administration & Accounting,15,1,1
+42,,Human Resource Management in Ghana,Justice Nyigmah Bawole,Business Administration & Accounting,15,2,0
+43,,Entrepreneurship in Emerging Economies,K. Poku,Business Administration & Accounting,15,4,0
+44,9781408093887,Cost and Management Accounting,Colin Drury,Business Administration & Accounting,15,5,4
+45,9780133942842,Structural Analysis,R.C. Hibbeler,Engineering,17,3,2
+46,,Fluid Mechanics for Engineers,David A. Chin,Engineering,17,2,2
+47,,Highway and Traffic Engineering in Ghana,Charles Adams,Engineering,17,2,2
+48,,Renewable Energy Systems for Rural Ghana,Abeeku Brew-Hammond,Engineering,17,2,2
+49,9780135072094,Principles of Electric Circuits,Thomas L. Floyd,Engineering,17,5,3
+50,,Tropical Agriculture: The Development of Production,J.H. Ochse,Agriculture & Agribusiness,18,1,0
+51,9781466597054,Cocoa Production and Processing Technology,Emmanuel Ohene Afoakwa,Agriculture & Agribusiness,18,2,1
+52,,Soil Science and Management in West Africa,Kwame Ofori Danson,Agriculture & Agribusiness,18,4,0
+53,,Agribusiness Management for Developing Countries,Freeman Y. Mensah,Agriculture & Agribusiness,18,1,1
+54,9781119320315,Principles of Anatomy and Physiology,Gerard J. Tortora,Nursing & Health Sciences,22,4,4
+55,,Community Health Nursing in Ghana,Adzo Kwao Torto,Nursing & Health Sciences,22,4,3
+56,9780133974362,Fundamentals of Nursing Practice,Barbara Kozier,Nursing & Health Sciences,22,2,2
+57,,Public Health in West Africa,Fred Binka,Public Health,32,2,2
+58,,Malaria Control Strategies in Sub-Saharan Africa,Kwadwo Koram,Public Health,32,2,0
+59,9781305090446,Environmental Science and Sustainable Development,G. Tyler Miller,Environmental & Earth Science,31,2,1
+60,,Climate Change and Coastal Erosion in Ghana,Kwasi Appeaning Addo,Environmental & Earth Science,31,1,0
+61,,Educational Psychology for Ghanaian Teachers,Anthony Afful-Broni,Education,19,2,0
+62,,Curriculum Development in Basic Education,Jophus Anamuah-Mensah,Education,19,1,1
+63,9780253340762,Philosophy and Education in Africa,Kwasi Wiredu,Education,19,1,0
+64,9781259912436,Sociology: A Brief Introduction,Richard T. Schaefer,Social Sciences,21,2,1
+65,,Traditional Political Systems of Ghana,K.A. Busia,Social Sciences,21,5,3
+66,9780714611523,The Position of the Chief in the Modern Political System of Ashanti,K.A. Busia,Social Sciences,21,1,0
+67,9781583670417,Consciencism: Philosophy and Ideology for Decolonization,Kwame Nkrumah,Political Science & Governance,40,2,1
+68,,Cultural Policy in Ghana,UNESCO,African Studies,28,3,2
+69,9789988584207,Twi Made Easy,Florence Dolphyne,Literature & Languages,29,1,1
+70,,Ewe Grammar and Composition,Kofi Agbedor,Literature & Languages,29,5,4
+71,9780334007687,African Traditional Religion: A Definition,E. Bolaji Idowu,Religious & Moral Studies,42,2,2
+72,,The Akan Doctrine of God,J.B. Danquah,Religious & Moral Studies,42,2,1
+73,,Christianity in Independent Africa,Edward Fashole-Luke,Religious & Moral Studies,42,4,3
+74,9780078205480,Basic Technical Drawing,Henry Cecil Spencer,Fine Art & Technical Drawing,43,1,0
+75,,Traditional Kente Weaving of Ghana,Kwabena Boateng,Fine Art & Technical Drawing,43,1,0
+76,,Sport and Recreation Management,Paul M. Pedersen,Physical Education & Sports Science,44,1,0
+77,9780132931281,General Chemistry: Principles and Modern Applications,Ralph H. Petrucci,Basic Sciences,10,4,1
+78,9781133947271,Physics for Scientists and Engineers,Raymond A. Serway,Basic Sciences,10,1,1
+79,9781938168116,Concepts of Biology,Samantha Fowler,Basic Sciences,10,5,4
+80,9781108457651,English Grammar in Use,Raymond Murphy,English & Communication Skills,11,1,1
+81,,Communication Skills for University Students,Patricia Beard,English & Communication Skills,11,2,0
+82,,Effective Technical Report Writing,Kwaku Asante-Darko,English & Communication Skills,11,1,1
+83,,Past Questions Compendium: Level 100-400 (All Departments),NTU Library Editorial Team,Past Questions Section,7,3,2
+84,,West Africa Magazine Bound Volume 2023,West Africa Publishing,Newspapers & Periodicals,8,3,2
+85,,Daily Graphic Bound Volume 2023,Graphic Communications Group,Newspapers & Periodicals,8,1,0
+86,9780262046305,Introduction to Algorithms,Thomas H. Cormen,Computer Science & IT,14,2,2

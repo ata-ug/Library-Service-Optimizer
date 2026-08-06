@@ -1,0 +1,51 @@
+location_id,name,area,type,latitude,longitude
+1,Main Entrance,Ground Floor - Lobby,ENTRANCE,5.808551,-0.350855
+2,Circulation / Issue Desk,Ground Floor - Lobby,DESK,5.807895,-0.350498
+3,Returns Desk,Ground Floor - Lobby,DESK,5.808726,-0.349682
+4,Security Check Point,Ground Floor - Lobby,ROOM,5.809006,-0.350744
+5,Cloakroom / Bag Store,Ground Floor - Lobby,ROOM,5.808159,-0.350846
+6,Shelf - General Reference,Ground Floor - East Wing,SHELF,5.807794,-0.34999
+7,Shelf - Past Questions Section,Ground Floor - East Wing,SHELF,5.807448,-0.350542
+8,Shelf - Newspapers & Periodicals,Ground Floor - East Wing,SHELF,5.80857,-0.349919
+9,Shelf - Ghanaian Collection (Africana),Ground Floor - East Wing,SHELF,5.807797,-0.349839
+10,Shelf - Basic Sciences,Ground Floor - East Wing,SHELF,5.808857,-0.350888
+11,Shelf - English & Communication Skills,Ground Floor - East Wing,SHELF,5.80885,-0.349643
+12,Reading Room A,Ground Floor - East Wing,ROOM,5.808012,-0.35062
+13,Photocopying / Printing Point,Ground Floor - West Wing,DESK,5.809123,-0.350294
+14,Shelf - Computer Science & IT,First Floor - North Wing,SHELF,5.807567,-0.350726
+15,Shelf - Business Administration & Accounting,First Floor - North Wing,SHELF,5.808925,-0.349813
+16,Shelf - Law,First Floor - North Wing,SHELF,5.808853,-0.349586
+17,Shelf - Engineering,First Floor - North Wing,SHELF,5.808365,-0.349148
+18,Shelf - Agriculture & Agribusiness,First Floor - North Wing,SHELF,5.808081,-0.349906
+19,Shelf - Education,First Floor - North Wing,SHELF,5.808893,-0.349787
+20,Shelf - Economics,First Floor - North Wing,SHELF,5.808951,-0.349861
+21,Shelf - Social Sciences,First Floor - North Wing,SHELF,5.808668,-0.350818
+22,Shelf - Nursing & Health Sciences,First Floor - North Wing,SHELF,5.80781,-0.350379
+23,Reading Room B,First Floor - North Wing,ROOM,5.807544,-0.350481
+24,Group Discussion Room 1,First Floor - South Wing,ROOM,5.807582,-0.3504
+25,Group Discussion Room 2,First Floor - South Wing,ROOM,5.808544,-0.350243
+26,First Floor Help Desk,First Floor - South Wing,DESK,5.808066,-0.350523
+27,Shelf - Postgraduate Theses & Dissertations,Second Floor - Postgraduate Wing,SHELF,5.807881,-0.349214
+28,Shelf - African Studies,Second Floor - Postgraduate Wing,SHELF,5.808566,-0.349804
+29,Shelf - Literature & Languages,Second Floor - Postgraduate Wing,SHELF,5.807708,-0.349588
+30,Shelf - Mathematics & Statistics,Second Floor - Postgraduate Wing,SHELF,5.807694,-0.350217
+31,Shelf - Environmental & Earth Science,Second Floor - Postgraduate Wing,SHELF,5.809181,-0.349748
+32,Shelf - Public Health,Second Floor - Postgraduate Wing,SHELF,5.808403,-0.349668
+33,Postgraduate Reading Room,Second Floor - Postgraduate Wing,ROOM,5.808917,-0.349503
+34,e-Library / ICT Centre,Second Floor - Postgraduate Wing,ROOM,5.807812,-0.350842
+35,Silent Study Room,Second Floor - Postgraduate Wing,ROOM,5.807968,-0.350418
+36,Librarian's Office,First Floor - South Wing,STAFF_ROOM,5.80778,-0.349203
+37,Cataloguing & Acquisitions Office,First Floor - South Wing,STAFF_ROOM,5.808977,-0.350334
+38,Staff Common Room,Ground Floor - West Wing,STAFF_ROOM,5.80858,-0.350188
+39,Book Repair & Bindery,Ground Floor - West Wing,STAFF_ROOM,5.809046,-0.350074
+40,Shelf - Political Science & Governance,First Floor - North Wing,SHELF,5.807877,-0.350456
+41,Shelf - History,First Floor - North Wing,SHELF,5.80841,-0.350427
+42,Shelf - Religious & Moral Studies,First Floor - North Wing,SHELF,5.808452,-0.349284
+43,Shelf - Fine Art & Technical Drawing,First Floor - North Wing,SHELF,5.808119,-0.350505
+44,Shelf - Physical Education & Sports Science,First Floor - North Wing,SHELF,5.809196,-0.349983
+45,Shelf - Ghana Law Reports Reserve,Second Floor - Postgraduate Wing,SHELF,5.807564,-0.350815
+46,East Stairwell,Ground Floor - East Wing,ROOM,5.807597,-0.349771
+47,West Stairwell,Ground Floor - West Wing,ROOM,5.808826,-0.35014
+48,North Stairwell,First Floor - North Wing,ROOM,5.807514,-0.350213
+49,Fire Exit - Rear Yard,Ground Floor - West Wing,ENTRANCE,5.809193,-0.349948
+50,Old Archive Room - Basement,Basement (Disused),ROOM,5.809148,-0.349351
