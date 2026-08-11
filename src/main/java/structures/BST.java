@@ -3,25 +3,7 @@ package structures;
 import java.util.Comparator;
 import java.util.function.Consumer;
 
-/*
- * BST.java
- *
- * A generic Binary Search Tree (BST) from scratch.
- * No built-in Java data structures are used anywhere in the tree logic
- * itself (no ArrayList, HashMap, etc). The only java.util usage in this
- * file is java.util.Comparator
- * "Generic" just means this BST can hold ANY type T. By default it
- * assumes T implements Comparable<T> (natural ordering, e.g. plain
- * Integers). But some of our real project types -- like Book -- don't
- * implement Comparable, so this BST also accepts a Comparator<T>
- * instead, the same pattern GenericHeap already uses elsewhere in this
- * package. That way we can order Book objects by title without having
- * to change Book.java, which belongs to the Data & DB squad.
- *
- * A BST keeps values ordered so that for every node:
- *   - everything in the left subtree is smaller
- *   - everything in the right subtree is bigger
- */
+
 public class BST<T> {
 
     // A single node in the tree
@@ -37,30 +19,25 @@ public class BST<T> {
         }
     }
 
-    private Node<T> root;              // the top of the tree
-    private int size;                  // how many values are currently stored
-    private Comparator<T> comparator;  // null means "use natural ordering (Comparable)"
+    private Node<T> root;              
+    private int size;                  
+    private Comparator<T> comparator;  
 
-    // Natural-ordering BST. T must implement Comparable<T> at runtime
-    // (e.g. Integer, String). Use the other constructor for types that
-    // don't, like Book.
+
     public BST() {
         root = null;
         size = 0;
         comparator = null;
     }
 
-    // Comparator-based BST. Lets us order types that don't implement
-    // Comparable themselves, e.g.:
-    //   new BST<Book>((a, b) -> a.title.compareToIgnoreCase(b.title))
+
     public BST(Comparator<T> comparator) {
         root = null;
         size = 0;
         this.comparator = comparator;
     }
 
-    // Compares two values using whichever ordering this tree was built
-    // with: the supplied Comparator, or natural ordering if none was given.
+
     @SuppressWarnings("unchecked")
     private int compare(T a, T b) {
         if (comparator != null) {
@@ -97,8 +74,7 @@ public class BST<T> {
         } else if (comparison > 0) {
             node.right = insertHelper(node.right, value);
         }
-        // if comparison == 0, the value already exists, so we do nothing
-        // (no duplicates allowed)
+
 
         return node;
     }
@@ -206,18 +182,6 @@ public class BST<T> {
     }
 
 
-    // Programmatic traversals - hand each value to a caller-supplied
-    // action, IN ORDER, instead of just printing. This is what lets
-    // another squad (e.g. Algorithms Engine) actually consume the
-    // sorted data - run their own search, feed it into a sort
-    // comparison, etc - without us needing to return an array (which
-    // has real pitfalls in Java when T is generic) or a java.util
-    // collection (which we're avoiding for graded structures anyway).
-    //
-    // Example usage from outside this class:
-    //   bst.inorder(book -> System.out.println(book.getTitle()));
-    //   bst.inorder(book -> someOtherSquadsList.add(book));
-  
 
     public void inorder(Consumer<T> action) {
         inorderVisit(root, action);

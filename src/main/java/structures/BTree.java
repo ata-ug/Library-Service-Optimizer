@@ -102,13 +102,6 @@ public class BTree<T> {
     }
 
  
-    // Insert
-    // The core idea: we never insert into a full node on the way down.
-    // Instead, any time we're about to step into a full child, we split
-    // that child FIRST (pushing its middle key up into the parent),
-    // then continue downward. This guarantees there's always room by
-    // the time we reach a leaf, and it's why a single top-level
-    // insert() call never needs to "come back up" the tree afterward.
 
     public void insert(T value) {
         if (search(value)) {
@@ -189,11 +182,6 @@ public class BTree<T> {
     }
 
     // Delete
-    // The mirror problem to insert: we never step into a child that has
-    // only the minimum number of keys, because deleting from it might
-    // leave it with too few. So on the way down, any time the next
-    // child has exactly (minDegree - 1) keys, we top it up first -
-    // either by borrowing a key from a sibling, or merging it with one.
 
     public void delete(T value) {
         if (!search(value)) {
