@@ -22,6 +22,19 @@ public class Location {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return locationId == location.locationId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(locationId);
+    }
+
+    @Override
     public String toString() {
         return "Location{id=" + locationId + ", name='" + name + "', type=" + type + "}";
     }
