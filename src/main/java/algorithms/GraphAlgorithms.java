@@ -461,23 +461,10 @@ public class GraphAlgorithms {
             disjointSet.makeSet(v);
         });
 
-        // 2. Collect all unique edges into min-heap
-        GenericHashtable<String, Boolean> seenEdges = new GenericHashtable<>();
+        // 2. Collect edges into min-heap
         graph.forEachVertex(u -> {
             graph.forEachNeighbor(u, (v, weight) -> {
-                String key1 = u.toString() + "->" + v.toString();
-                String key2 = v.toString() + "->" + u.toString();
-                if (!graph.isDirected()) {
-                    if (!seenEdges.containsKey(key1) && !seenEdges.containsKey(key2)) {
-                        seenEdges.put(key1, true);
-                        allEdgesHeap.add(new WeightedEdge<>(u, v, weight));
-                    }
-                } else {
-                    if (!seenEdges.containsKey(key1)) {
-                        seenEdges.put(key1, true);
-                        allEdgesHeap.add(new WeightedEdge<>(u, v, weight));
-                    }
-                }
+                allEdgesHeap.add(new WeightedEdge<>(u, v, weight));
             });
         });
 
