@@ -1,6 +1,10 @@
 {
   "java.project.sourcePaths": [
-    "src/main/java"
+    "src/main/java",
+    "src/main/resources"
   ],
-  "java.project.outputPath": "bin"
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "sqlite-jdbc-3.36.0.3.jar"
+  ]
 }
