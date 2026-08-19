@@ -1,16 +1,7 @@
--- ============================================================
--- DCIT 204/308 -- Library Service Operations Optimizer
--- Data & DB Squad -- Finalized SQLite Schema
--- 10 tables. snake_case naming throughout.
--- Generated from Library_Database_Schema_Finalized.docx
--- ============================================================
 
 PRAGMA foreign_keys = ON;
 
--- ------------------------------------------------------------
--- 1. locations
--- Every physical node in the library graph (min 50 rows required)
--- ------------------------------------------------------------
+
 CREATE TABLE locations (
     location_id     INTEGER PRIMARY KEY AUTOINCREMENT,
     name            TEXT NOT NULL,
@@ -20,10 +11,7 @@ CREATE TABLE locations (
     longitude       REAL
 );
 
--- ------------------------------------------------------------
--- 2. roads
--- Weighted edges connecting locations (min 100 rows required)
--- ------------------------------------------------------------
+
 CREATE TABLE roads (
     road_id                 INTEGER PRIMARY KEY AUTOINCREMENT,
     from_location_id        INTEGER NOT NULL,
@@ -35,11 +23,7 @@ CREATE TABLE roads (
     FOREIGN KEY (to_location_id)   REFERENCES locations(location_id)
 );
 
--- ------------------------------------------------------------
--- 3. members
--- index_number is the student/staff ID that anti-plagiarism
--- algorithm parameters are derived from.
--- ------------------------------------------------------------
+
 CREATE TABLE members (
     member_id         INTEGER PRIMARY KEY AUTOINCREMENT,
     index_number      TEXT UNIQUE NOT NULL,
@@ -48,10 +32,7 @@ CREATE TABLE members (
     registered_date   TEXT NOT NULL
 );
 
--- ------------------------------------------------------------
--- 4. books
--- shelf_location_id links each book into the locations graph.
--- ------------------------------------------------------------
+
 CREATE TABLE books (
     book_id             INTEGER PRIMARY KEY AUTOINCREMENT,
     isbn                TEXT,
@@ -88,10 +69,7 @@ CREATE TABLE service_requests (
     FOREIGN KEY (destination_location_id)  REFERENCES locations(location_id)
 );
 
--- ------------------------------------------------------------
--- 6. issue_logs
--- Historical record created once a service_request is fulfilled.
--- ------------------------------------------------------------
+
 CREATE TABLE issue_logs (
     issue_log_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     request_id      INTEGER NOT NULL,
@@ -106,10 +84,7 @@ CREATE TABLE issue_logs (
     FOREIGN KEY (member_id)  REFERENCES members(member_id)
 );
 
--- ------------------------------------------------------------
--- 7. resources
--- Staff, book carts, or kiosks that fulfill requests. (min 30 rows)
--- ------------------------------------------------------------
+
 CREATE TABLE resources (
     resource_id            INTEGER PRIMARY KEY AUTOINCREMENT,
     type                   TEXT NOT NULL CHECK (type IN ('STAFF','CART','KIOSK')),
@@ -132,11 +107,7 @@ CREATE TABLE algorithm_runs (
     date_run         TEXT NOT NULL
 );
 
--- ------------------------------------------------------------
--- 9. audit_events
--- Stack-based undo/audit trail. Every mutating operation pushes
--- an event; undo pops the most recent non-undone event.
--- ------------------------------------------------------------
+
 CREATE TABLE audit_events (
     event_id           INTEGER PRIMARY KEY AUTOINCREMENT,
     event_type         TEXT NOT NULL CHECK (event_type IN ('ISSUE','RETURN','REQUEST_CREATED','REQUEST_CANCELLED','UNDO')),
@@ -148,12 +119,7 @@ CREATE TABLE audit_events (
     is_undone          INTEGER NOT NULL DEFAULT 0 CHECK (is_undone IN (0,1))
 );
 
--- ------------------------------------------------------------
--- 10. algorithm_parameters
--- Anti-plagiarism traceability: every algorithm parameter derived
--- from a student index number, formula spelled out, defensible
--- verbally at the oral exam.
--- ------------------------------------------------------------
+
 CREATE TABLE algorithm_parameters (
     param_id               INTEGER PRIMARY KEY AUTOINCREMENT,
     member_index_number    TEXT NOT NULL,
