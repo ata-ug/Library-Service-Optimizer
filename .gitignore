@@ -1,0 +1,58 @@
+# Compiled Java class files
+*.class
+
+# Build output directories
+/bin/
+/target/
+/build/
+/out/
+
+# Database files & SQLite temporary journals
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# Archives / temporary zips
+*.zip
+*.tar.gz
+
+# Log files
+*.log
+
+# IDE & Editor settings
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse metadata & cache
+.metadata/
+tmp/
+*.tmp
+*.bak
+*.swp
+local.properties
+.loadpath
+.recommenders
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
