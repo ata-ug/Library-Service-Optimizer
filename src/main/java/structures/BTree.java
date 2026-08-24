@@ -25,7 +25,6 @@ public class BTree<T> {
             this.leaf = leaf;
         }
 
-        @SuppressWarnings("unchecked")
         T key(int i) {
             return (T) keys[i];
         }

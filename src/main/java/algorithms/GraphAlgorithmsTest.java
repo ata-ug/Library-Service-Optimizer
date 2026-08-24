@@ -1,6 +1,5 @@
 package algorithms;
 
-import library.db.DatabaseConnection;
 import library.db.DatabaseSeeder;
 import library.db.LibraryDataLoader;
 import library.model.Location;
