@@ -293,13 +293,12 @@ java -cp "bin:lib/*" org.openjdk.jmh.Main algorithms.GraphJmhBenchmark
 
 ## 📖 Formal Proofs & Trace Tables
 
-Comprehensive mathematical proofs, execution trace tables, and counterexample analyses are documented in [`docs/graph.md`](docs/graph.md):
+Comprehensive mathematical proofs, execution trace tables, counterexample analyses, and edge-case test matrices are documented in [`docs/correctness_proofs.md`](docs/correctness_proofs.md) and [`docs/graph.md`](docs/graph.md):
 
-* **Trace Table 1:** Step-by-step Dijkstra shortest-path execution trace on the Balme Library network.
-* **Trace Table 2:** Step-by-step Kruskal Minimum Spanning Tree execution trace with disjoint-set partitions.
-* **Loop Invariant Proof:** Formal inductive proof of correctness for Dijkstra's algorithm.
-* **Cut Property Proof:** Exchange argument proof for greedy Minimum Spanning Tree algorithms.
-* **Counterexample Analysis:** Failure of Dijkstra's greedy choice property under negative edge weights.
+* **Trace Tables:** Step-by-step execution state traces for Dijkstra, Kruskal MST, 0/1 Knapsack DP, Interpolation vs. Binary Search, and Greedy Scheduling.
+* **Formal Proof Sketches:** Mathematical proofs for Dijkstra loop invariant, MST Cut Property exchange argument, Binary Search invariant & termination, 0/1 Knapsack optimal substructure, Min-Heap ordering, and Disjoint-Set path compression $\alpha(n)$ bound.
+* **Counterexample Analyses:** Proofs of greedy choice failure under negative edge weights, silent binary search failure on unsorted inputs, and greedy suboptimality in multi-resource allocations.
+* **Defensive Edge-Case Matrix:** Matrix mapping edge-case preconditions to system exceptions and automated test suites (`GraphAlgorithmsTest`, `SearchEngineTest`, `KnapsackTest`, `GreedySchedulerTest`, `DataStructuresEdgeCaseTest`).
 
 ---
 
