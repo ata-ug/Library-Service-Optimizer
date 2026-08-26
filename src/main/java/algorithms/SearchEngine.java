@@ -6,9 +6,9 @@ import java.util.List;
 public class SearchEngine {
 
     public static class Book {
-        int bookId;
-        String isbn;
-        String title;
+        public int bookId;
+        public String isbn;
+        public String title;
 
         public Book(int bookId, String isbn, String title) {
             this.bookId = bookId;
@@ -23,8 +23,8 @@ public class SearchEngine {
     }
 
     public static class ServiceRequest {
-        int requestId;
-        String status;
+        public int requestId;
+        public String status;
 
         public ServiceRequest(int requestId, String status) {
             this.requestId = requestId;
@@ -52,9 +52,30 @@ public class SearchEngine {
         return -1;
     }
 
+    public static int interpolationSearchByRequestId(List<ServiceRequest> requests, int targetId) {
+        int low = 0;
+        int high = requests.size() - 1;
+
+        while (low <= high && targetId >= requests.get(low).requestId && targetId <= requests.get(high).requestId) {
+            if (low == high) {
+                if (requests.get(low).requestId == targetId) return low;
+                return -1;
+            }
+            int pos = low + (int) (((long) (high - low) * (targetId - requests.get(low).requestId)) /
+                    (requests.get(high).requestId - requests.get(low).requestId));
+
+            if (requests.get(pos).requestId == targetId) return pos;
+            if (requests.get(pos).requestId < targetId) low = pos + 1;
+            else high = pos - 1;
+        }
+        return -1;
+    }
+
     public static int linearSearchByTitle(List<Book> books, String targetTitle) {
+        if (targetTitle == null) return -1;
+        String query = targetTitle.trim();
         for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).title.equals(targetTitle)) {
+            if (books.get(i).title != null && books.get(i).title.equalsIgnoreCase(query)) {
                 return i;
             }
         }
@@ -63,7 +84,7 @@ public class SearchEngine {
 
     public static boolean isSortedByTitle(List<Book> books) {
         for (int i = 1; i < books.size(); i++) {
-            if (books.get(i - 1).title.compareTo(books.get(i).title) > 0) {
+            if (books.get(i - 1).title.compareToIgnoreCase(books.get(i).title) > 0) {
                 return false;
             }
         }
@@ -106,10 +127,12 @@ public class SearchEngine {
     }
 
     static int binarySearchByTitleUnchecked(List<Book> books, String targetTitle) {
+        if (targetTitle == null) return -1;
+        String query = targetTitle.trim();
         int low = 0, high = books.size() - 1;
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            int cmp = books.get(mid).title.compareTo(targetTitle);
+            int cmp = books.get(mid).title.compareToIgnoreCase(query);
             if (cmp == 0) return mid;
             else if (cmp < 0) low = mid + 1;
             else high = mid - 1;

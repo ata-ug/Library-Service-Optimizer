@@ -259,7 +259,24 @@ java -cp "bin;sqlite-jdbc-3.36.0.3.jar;src/main/resources" library.db.DatabaseSe
 java -cp "bin:sqlite-jdbc-3.36.0.3.jar:src/main/resources" library.db.DatabaseSeeder
 ```
 
-### 4. Run the Application Smoke Test
+### 4. Run the Interactive Demonstration Console Menu 🎮
+
+To allow examiners to run interactive demonstrations of all graph algorithms, database operations, search algorithms, greedy scheduling, knapsack DP, and custom data structures without editing source code:
+
+```bash
+# Windows PowerShell
+java -cp "bin;sqlite-jdbc-3.36.0.3.jar;src/main/resources" library.ConsoleMenu
+
+# Linux / macOS
+java -cp "bin:sqlite-jdbc-3.36.0.3.jar:src/main/resources" library.ConsoleMenu
+```
+
+Alternatively, pass `--menu` to `library.Main`:
+```bash
+java -cp "bin;sqlite-jdbc-3.36.0.3.jar;src/main/resources" library.Main --menu
+```
+
+### 5. Run the Application Smoke Test
 
 Execute `Main.java` to verify the full DAO pipeline and JDBC connectivity:
 

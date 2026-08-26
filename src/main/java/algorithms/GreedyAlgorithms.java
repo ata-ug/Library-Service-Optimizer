@@ -16,7 +16,7 @@ enum ResourceType {
     STAFF, CART, KIOSK
 }
 
-class GreedyAlgorithms {
+public class GreedyAlgorithms {
     public final String id;
     public final RequestType type;
     public final int urgency; // higher is more urgent
@@ -32,6 +32,27 @@ class GreedyAlgorithms {
     @Override
     public String toString() {
         return id + "(" + type + ", u=" + urgency + ", res=" + resource + ")";
+    }
+
+    public static void runDemo(int staff, int carts, int kiosks) {
+        GreedyAlgorithms[] requests = new GreedyAlgorithms[]{
+                new GreedyAlgorithms("REQ-101", RequestType.BORROW, 9, ResourceType.STAFF),
+                new GreedyAlgorithms("REQ-102", RequestType.RETURN, 4, ResourceType.CART),
+                new GreedyAlgorithms("REQ-103", RequestType.RESERVE, 8, ResourceType.STAFF),
+                new GreedyAlgorithms("REQ-104", RequestType.RENEW, 6, ResourceType.KIOSK),
+                new GreedyAlgorithms("REQ-105", RequestType.BORROW, 10, ResourceType.STAFF)
+        };
+
+        System.out.println("\nIncoming Requests (Prioritized by Urgency Score):");
+        for (GreedyAlgorithms r : requests) System.out.println("  " + r);
+
+        ResourcePool pool = new ResourcePool(staff, carts, kiosks);
+        GreedyAlgorithms[] allocated = GreedyScheduler.schedule(requests, pool);
+
+        System.out.println("\n✔ Greedy Allocation Result (" + allocated.length + " scheduled):");
+        for (GreedyAlgorithms r : allocated) {
+            System.out.println("  ✅ Scheduled: " + r);
+        }
     }
 }
 

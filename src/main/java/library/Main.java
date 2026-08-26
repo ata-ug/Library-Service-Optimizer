@@ -17,6 +17,11 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws SQLException {
+        if (args.length > 0 && ("--menu".equalsIgnoreCase(args[0]) || "-m".equalsIgnoreCase(args[0]))) {
+            ConsoleMenu.main(args);
+            return;
+        }
+
         seedMinimalRow();
 
         LibraryDataLoader loader = new LibraryDataLoader();
@@ -63,6 +68,7 @@ public class Main {
         for (AuditEvent e : events) System.out.println("  " + e);
 
         System.out.println("\nSmoke test complete -- loader is wired to library.db correctly.");
+        System.out.println("💡 Interactive Demo Menu: Run 'java -cp \"bin;sqlite-jdbc-3.36.0.3.jar;src/main/resources\" library.ConsoleMenu' to launch interactive demonstration menu.");
     }
 
     /** Inserts one connected row per table so every loader method has something to read. */

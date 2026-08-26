@@ -22,7 +22,7 @@ class Item {
     }
 }
 
-class DynamicProgramming {
+public class DynamicProgramming {
     /**
      * Solves 0/1 knapsack via tabulation and reconstructs the chosen items.
      * @param items array of items
@@ -90,6 +90,28 @@ class DynamicProgramming {
             this.totalWeight = totalWeight;
             this.selectedItems = selectedItems;
             this.dpTable = dpTable;
+        }
+    }
+
+    public static void runDemo(int capacity) {
+        Item[] items = new Item[]{
+                new Item("Stack Re-shelving", 15, 30),
+                new Item("Rare Book Consultation", 25, 60),
+                new Item("RFID Tag Audit", 20, 40),
+                new Item("Inter-Library Loan Processing", 10, 25),
+                new Item("Catalog System Maintenance", 30, 50)
+        };
+
+        System.out.println("\nAvailable Service Tasks:");
+        for (Item item : items) System.out.println("  " + item);
+
+        Result result = solve(items, capacity);
+        System.out.println("\n✔ Optimal DP Selection:");
+        System.out.println("  • Maximum Achieved Benefit: " + result.totalValue);
+        System.out.println("  • Total Time Consumed:       " + result.totalWeight + " / " + capacity + " mins");
+        System.out.println("  • Chosen Tasks:");
+        for (Item item : result.selectedItems) {
+            System.out.println("    - " + item);
         }
     }
 }
