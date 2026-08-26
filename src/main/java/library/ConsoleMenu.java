@@ -49,7 +49,7 @@ public class ConsoleMenu {
         boolean exit = false;
         while (!exit) {
             printMainMenu();
-            String input = readInput("Select an option [1-8]: ");
+            String input = readInput("Select an option [1-9]: ");
             System.out.println();
             switch (input.trim()) {
                 case "1":
@@ -71,14 +71,17 @@ public class ConsoleMenu {
                     demoCustomDataStructures();
                     break;
                 case "7":
-                    runSystemSmokeTest();
+                    demoSortingEngine();
                     break;
                 case "8":
+                    runSystemSmokeTest();
+                    break;
+                case "9":
                     exit = true;
                     System.out.println("Exiting Balme Library Operations Optimizer. Goodbye!");
                     break;
                 default:
-                    System.out.println("❌ Invalid option. Please select a number between 1 and 8.");
+                    System.out.println("❌ Invalid option. Please select a number between 1 and 9.");
             }
             if (!exit) {
                 System.out.println("\nPress Enter to return to main menu...");
@@ -97,8 +100,9 @@ public class ConsoleMenu {
         System.out.println("  4. ⚡ Greedy Service Request Scheduling (Live DB Requests & Resources)");
         System.out.println("  5. 💼 0/1 Knapsack Request Selection (Live DB Service Tasks)");
         System.out.println("  6. 🧩 Custom Generic Data Structures Showcase (Populated from SQLite)");
-        System.out.println("  7. 🧪 Full System DAO & Database Smoke Test");
-        System.out.println("  8. ❌ Exit Program");
+        System.out.println("  7. 📊 Custom Sorting Engine Demonstration (Selection, Insertion, Merge, Quick)");
+        System.out.println("  8. 🧪 Full System DAO & Database Smoke Test");
+        System.out.println("  9. ❌ Exit Program");
         System.out.println("==================================================================");
     }
 
@@ -559,7 +563,120 @@ public class ConsoleMenu {
     }
 
     /* -----------------------------------------------------------------
-     * Option 7: Automated System Smoke Test
+     * Option 7: Sorting Engine & Priority Queue Management
+     * ----------------------------------------------------------------- */
+    private void demoSortingEngine() {
+        System.out.println("--- 📊 Custom Sorting Engine Demonstration (Module M4) ---");
+        System.out.println("Select Sorting Criteria for Service Requests:");
+        System.out.println("1. Urgency Score (High/Low priority)");
+        System.out.println("2. Submit Time (Chronological)");
+        System.out.println("3. Deadline (Nulls sorted last)");
+        String criteriaChoice = readInput("Choice [1-3, default=1]: ");
+
+        SortingEngine.SortCriteria criteria;
+        switch (criteriaChoice.trim()) {
+            case "2":
+                criteria = SortingEngine.SortCriteria.SUBMIT_TIME;
+                break;
+            case "3":
+                criteria = SortingEngine.SortCriteria.DEADLINE;
+                break;
+            default:
+                criteria = SortingEngine.SortCriteria.URGENCY;
+                break;
+        }
+
+        System.out.println("\nSelect Sort Order:");
+        System.out.println("1. Ascending");
+        System.out.println("2. Descending");
+        String orderChoice = readInput("Choice [1-2, default=1]: ");
+        boolean ascending = !"2".equals(orderChoice.trim());
+
+        System.out.println("\nSelect Sorting Algorithm:");
+        System.out.println("1. Selection Sort (O(N^2), Unstable, In-place)");
+        System.out.println("2. Insertion Sort (O(N^2), Stable, In-place)");
+        System.out.println("3. Merge Sort (O(N log N), Stable, O(N) Space)");
+        System.out.println("4. Quicksort (O(N log N) avg, Unstable, In-place)");
+        System.out.println("5. Run ALL 4 Algorithms & Compare Performance Telemetry");
+        String algoChoice = readInput("Choice [1-5, default=5]: ");
+
+        try {
+            List<ServiceRequest> rawReqs = loader.loadServiceRequests();
+            if (rawReqs.isEmpty()) {
+                System.out.println("⚠ No service requests found in database. Seed database first.");
+                return;
+            }
+
+            System.out.println("\nLoaded " + rawReqs.size() + " Service Requests from library.db.");
+            System.out.println("Sorting Criteria: " + criteria.getDisplayName() + " (" + (ascending ? "Ascending" : "Descending") + ")");
+
+            if ("5".equals(algoChoice.trim()) || algoChoice.trim().isEmpty()) {
+                System.out.println("\n==========================================================================================");
+                System.out.println("               EMPIRICAL SORTING ENGINE BENCHMARK COMPARISON");
+                System.out.println("==========================================================================================");
+                System.out.printf("%-16s | %-12s | %-12s | %-12s | %-8s | %-10s%n",
+                        "Algorithm", "Time (ms)", "Comparisons", "Swaps/Copies", "Stable", "Space");
+                System.out.println("------------------------------------------------------------------------------------------");
+
+                for (SortingEngine.AlgorithmType algo : SortingEngine.AlgorithmType.values()) {
+                    ServiceRequest[] copy = rawReqs.toArray(new ServiceRequest[0]);
+                    SortingEngine.SortMetrics metrics = SortingEngine.sort(copy, criteria, algo, ascending);
+                    System.out.printf("%-16s | %-12.3f | %-12d | %-12d | %-8b | %-10s%n",
+                            metrics.getAlgorithmName(),
+                            metrics.getTimeMs(),
+                            metrics.getComparisons(),
+                            metrics.getSwaps(),
+                            metrics.isStable(),
+                            metrics.getSpaceComplexity());
+                }
+                System.out.println("==========================================================================================");
+
+                // Show top 8 sorted results from Quicksort run
+                ServiceRequest[] displayArr = rawReqs.toArray(new ServiceRequest[0]);
+                SortingEngine.sort(displayArr, criteria, SortingEngine.AlgorithmType.QUICKSORT, ascending);
+                printSampleSortedRequests(displayArr, 8);
+
+            } else {
+                SortingEngine.AlgorithmType selectedAlgo;
+                switch (algoChoice.trim()) {
+                    case "1": selectedAlgo = SortingEngine.AlgorithmType.SELECTION_SORT; break;
+                    case "2": selectedAlgo = SortingEngine.AlgorithmType.INSERTION_SORT; break;
+                    case "3": selectedAlgo = SortingEngine.AlgorithmType.MERGE_SORT; break;
+                    default: selectedAlgo = SortingEngine.AlgorithmType.QUICKSORT; break;
+                }
+
+                ServiceRequest[] reqsArr = rawReqs.toArray(new ServiceRequest[0]);
+                SortingEngine.SortMetrics metrics = SortingEngine.sort(reqsArr, criteria, selectedAlgo, ascending);
+
+                System.out.println("\n✔ Sorting Complete!");
+                System.out.println("  • Metrics: " + metrics);
+                printSampleSortedRequests(reqsArr, 10);
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Sorting error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void printSampleSortedRequests(ServiceRequest[] arr, int limit) {
+        int count = Math.min(limit, arr.length);
+        System.out.println("\nSample Sorted Service Requests (Top " + count + " of " + arr.length + "):");
+        System.out.printf("%-8s | %-8s | %-8s | %-10s | %-20s | %-20s | %-10s%n",
+                "Req ID", "Member", "Book ID", "Urgency", "Time Submitted", "Deadline", "Status");
+        System.out.println("--------------------------------------------------------------------------------------------------");
+        for (int i = 0; i < count; i++) {
+            ServiceRequest r = arr[i];
+            System.out.printf("%-8d | %-8d | %-8d | %-10d | %-20s | %-20s | %-10s%n",
+                    r.requestId, r.memberId, r.bookId, r.urgency,
+                    r.timeSubmitted != null ? r.timeSubmitted : "N/A",
+                    r.deadline != null ? r.deadline : "NULL",
+                    r.status);
+        }
+    }
+
+    /* -----------------------------------------------------------------
+     * Option 8: Automated System Smoke Test
      * ----------------------------------------------------------------- */
     private void runSystemSmokeTest() {
         System.out.println("--- 🧪 Running Full Application Smoke Test ---");
