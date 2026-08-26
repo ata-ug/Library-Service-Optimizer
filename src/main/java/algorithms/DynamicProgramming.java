@@ -93,25 +93,40 @@ public class DynamicProgramming {
         }
     }
 
-    public static void runDemo(int capacity) {
-        Item[] items = new Item[]{
-                new Item("Stack Re-shelving", 15, 30),
-                new Item("Rare Book Consultation", 25, 60),
-                new Item("RFID Tag Audit", 20, 40),
-                new Item("Inter-Library Loan Processing", 10, 25),
-                new Item("Catalog System Maintenance", 30, 50)
-        };
+    public static void runDemoWithDatabase(java.util.List<library.model.ServiceRequest> dbRequests, int capacity) {
+        java.util.List<Item> itemList = new java.util.ArrayList<>();
+        if (dbRequests != null && !dbRequests.isEmpty()) {
+            for (library.model.ServiceRequest r : dbRequests) {
+                int weight = Math.max(5, (r.requestId * 7) % 25 + 5); // estimated processing time (5..30 mins)
+                int value = r.urgency * 10; // priority benefit score
+                itemList.add(new Item("REQ-" + r.requestId + " [" + r.category + "]", weight, value));
+            }
+        } else {
+            itemList.add(new Item("Stack Re-shelving", 15, 30));
+            itemList.add(new Item("Rare Book Consultation", 25, 60));
+            itemList.add(new Item("RFID Tag Audit", 20, 40));
+            itemList.add(new Item("Inter-Library Loan Processing", 10, 25));
+            itemList.add(new Item("Catalog System Maintenance", 30, 50));
+        }
 
-        System.out.println("\nAvailable Service Tasks:");
-        for (Item item : items) System.out.println("  " + item);
+        Item[] items = itemList.toArray(new Item[0]);
+
+        System.out.println("\nLoaded " + items.length + " Pending Service Tasks from SQLite Database:");
+        for (int i = 0; i < Math.min(6, items.length); i++) {
+            System.out.println("  " + items[i]);
+        }
+        if (items.length > 6) System.out.println("  ... (" + (items.length - 6) + " more tasks loaded)");
 
         Result result = solve(items, capacity);
-        System.out.println("\n✔ Optimal DP Selection:");
-        System.out.println("  • Maximum Achieved Benefit: " + result.totalValue);
-        System.out.println("  • Total Time Consumed:       " + result.totalWeight + " / " + capacity + " mins");
-        System.out.println("  • Chosen Tasks:");
-        for (Item item : result.selectedItems) {
-            System.out.println("    - " + item);
+        System.out.println("\n✔ Optimal 0/1 Knapsack Selection (DP):");
+        System.out.println("  • Maximum Priority Benefit Score: " + result.totalValue);
+        System.out.println("  • Total Staff Time Consumed:     " + result.totalWeight + " / " + capacity + " mins");
+        System.out.println("  • Chosen Tasks (" + result.selectedItems.length + " selected):");
+        for (int i = 0; i < Math.min(12, result.selectedItems.length); i++) {
+            System.out.println("    ✅ " + result.selectedItems[i]);
+        }
+        if (result.selectedItems.length > 12) {
+            System.out.println("    ... (" + (result.selectedItems.length - 12) + " more selected)");
         }
     }
 }

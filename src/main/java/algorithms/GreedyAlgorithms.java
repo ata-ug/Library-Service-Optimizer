@@ -34,25 +34,47 @@ public class GreedyAlgorithms {
         return id + "(" + type + ", u=" + urgency + ", res=" + resource + ")";
     }
 
-    public static void runDemo(int staff, int carts, int kiosks) {
-        GreedyAlgorithms[] requests = new GreedyAlgorithms[]{
-                new GreedyAlgorithms("REQ-101", RequestType.BORROW, 9, ResourceType.STAFF),
-                new GreedyAlgorithms("REQ-102", RequestType.RETURN, 4, ResourceType.CART),
-                new GreedyAlgorithms("REQ-103", RequestType.RESERVE, 8, ResourceType.STAFF),
-                new GreedyAlgorithms("REQ-104", RequestType.RENEW, 6, ResourceType.KIOSK),
-                new GreedyAlgorithms("REQ-105", RequestType.BORROW, 10, ResourceType.STAFF)
-        };
+    public static void runDemoWithDatabase(java.util.List<library.model.ServiceRequest> dbRequests, int staffCount, int cartCount, int kioskCount) {
+        java.util.List<GreedyAlgorithms> list = new java.util.ArrayList<>();
+        if (dbRequests != null && !dbRequests.isEmpty()) {
+            for (library.model.ServiceRequest r : dbRequests) {
+                RequestType type;
+                try {
+                    type = RequestType.valueOf(r.category.toUpperCase());
+                } catch (Exception e) {
+                    type = RequestType.BORROW;
+                }
+                ResourceType res;
+                if (type == RequestType.RETURN) res = ResourceType.CART;
+                else if (type == RequestType.RENEW) res = ResourceType.KIOSK;
+                else res = ResourceType.STAFF;
 
-        System.out.println("\nIncoming Requests (Prioritized by Urgency Score):");
-        for (GreedyAlgorithms r : requests) System.out.println("  " + r);
+                list.add(new GreedyAlgorithms("REQ-" + r.requestId, type, r.urgency, res));
+            }
+        } else {
+            list.add(new GreedyAlgorithms("REQ-101", RequestType.BORROW, 9, ResourceType.STAFF));
+            list.add(new GreedyAlgorithms("REQ-102", RequestType.RETURN, 4, ResourceType.CART));
+            list.add(new GreedyAlgorithms("REQ-103", RequestType.RESERVE, 8, ResourceType.STAFF));
+            list.add(new GreedyAlgorithms("REQ-104", RequestType.RENEW, 6, ResourceType.KIOSK));
+            list.add(new GreedyAlgorithms("REQ-105", RequestType.BORROW, 10, ResourceType.STAFF));
+        }
 
-        ResourcePool pool = new ResourcePool(staff, carts, kiosks);
+        GreedyAlgorithms[] requests = list.toArray(new GreedyAlgorithms[0]);
+
+        System.out.println("\nLoaded " + requests.length + " Pending Service Requests from Database:");
+        for (int i = 0; i < Math.min(8, requests.length); i++) {
+            System.out.println("  " + requests[i]);
+        }
+        if (requests.length > 8) System.out.println("  ... (" + (requests.length - 8) + " more requests in queue)");
+
+        ResourcePool pool = new ResourcePool(staffCount, cartCount, kioskCount);
         GreedyAlgorithms[] allocated = GreedyScheduler.schedule(requests, pool);
 
-        System.out.println("\n✔ Greedy Allocation Result (" + allocated.length + " scheduled):");
-        for (GreedyAlgorithms r : allocated) {
-            System.out.println("  ✅ Scheduled: " + r);
+        System.out.println("\n✔ Greedy Allocation Result (" + allocated.length + " / " + requests.length + " scheduled):");
+        for (int i = 0; i < Math.min(15, allocated.length); i++) {
+            System.out.println("  ✅ Scheduled: " + allocated[i]);
         }
+        if (allocated.length > 15) System.out.println("  ... (" + (allocated.length - 15) + " more scheduled)");
     }
 }
 
