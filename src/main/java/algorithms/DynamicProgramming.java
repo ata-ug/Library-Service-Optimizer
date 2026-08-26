@@ -1,8 +1,5 @@
 package algorithms;
 
-import java.util.Arrays;
-
-
     /* ---------- Knapsack DP for request selection ---------- */
 
 class Item {
