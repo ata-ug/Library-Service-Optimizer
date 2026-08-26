@@ -4,7 +4,7 @@
 
 ## 📑 Executive Summary & Deliverables Overview
 
-This document serves as the formal technical report component for **Module M4** of the **Balme Library Service Operations Optimizer**. It details:
+This document serves as the formal technical report component for **Module M4** of the **Library Service Operations Optimizer**. It details:
 1. **Custom Sorting Engine Implementation:** First-principles Java implementations of **Selection Sort**, **Insertion Sort**, **Merge Sort**, and **Quicksort** without relying on standard Java collection/sorting utilities (`java.util.Arrays.sort` or `java.util.Collections.sort`).
 2. **Multi-Criteria Service Request Sorting:** Domain-specific ordering logic arranging `service_requests` by **deadline** (handling null deadlines defensively), **submit time** (`timeSubmitted`), or **urgency score** (`urgency`).
 3. **Stability Analysis:** Rigorous theoretical and empirical evaluation of sorting algorithm stability and its operational impact on multi-level request queue prioritization.
