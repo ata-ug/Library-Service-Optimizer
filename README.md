@@ -164,47 +164,57 @@ Library-Service-Optimizer/
 │   └── junit-4.13.2.jar
 ├── sqlite-jdbc-3.36.0.3.jar            # SQLite JDBC driver
 ├── src/
-│   └── main/
-│       ├── java/
-│       │   ├── algorithms/             # Graph algorithms, Search engine, JMH benchmarks
-│       │   │   ├── GraphAlgorithms.java
-│       │   │   ├── GraphAlgorithmsTest.java
-│       │   │   ├── GraphJmhBenchmark.java
-│       │   │   ├── LibraryGraphService.java
-│       │   │   ├── SearchEngine.java
-│       │   │   └── SearchEngineTest.java
-│       │   ├── library/                # Main entry point & application logic
-│       │   │   ├── Main.java
-│       │   │   ├── db/                 # JDBC connection, seeding, and DAO loader
-│       │   │   │   ├── DatabaseConnection.java
-│       │   │   │   ├── DatabaseSeeder.java
-│       │   │   │   └── LibraryDataLoader.java
-│       │   │   └── model/              # Domain entity models (POJOs)
-│       │   │       ├── AlgorithmParameter.java
-│       │   │       ├── AlgorithmRun.java
-│       │   │       ├── AuditEvent.java
-│       │   │       ├── Book.java
-│       │   │       ├── IssueLog.java
-│       │   │       ├── Location.java
-│       │   │       ├── Member.java
-│       │   │       ├── Resource.java
-│       │   │       ├── Road.java
-│       │   │       └── ServiceRequest.java
-│       │   └── structures/             # Custom generic data structures
-│       │       ├── BST.java
-│       │       ├── BTree.java
-│       │       ├── CircularQueue.java
-│       │       ├── CustomDeque.java
-│       │       ├── CustomLinkedList.java
-│       │       ├── CustomQueue.java
-│       │       ├── GenericDisjointSet.java
-│       │       ├── GenericHashtable.java
-│       │       ├── GenericHeap.java
-│       │       ├── GenericStack.java
-│       │       ├── Graph.java
-│       │       └── RedBlackTree.java
-│       └── resources/
-│           └── schema.sql              # DDL schema definition & performance indexes
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── algorithms/             # Pure algorithm implementations & service engine
+│   │   │   │   ├── DynamicProgramming.java
+│   │   │   │   ├── GraphAlgorithms.java
+│   │   │   │   ├── GreedyAlgorithms.java
+│   │   │   │   ├── LibraryGraphService.java
+│   │   │   │   └── SearchEngine.java
+│   │   │   ├── library/                # Main entry point & application logic
+│   │   │   │   ├── Main.java
+│   │   │   │   ├── db/                 # JDBC connection, seeding, and DAO loader
+│   │   │   │   │   ├── DatabaseConnection.java
+│   │   │   │   │   ├── DatabaseSeeder.java
+│   │   │   │   │   └── LibraryDataLoader.java
+│   │   │   │   └── model/              # Domain entity models (POJOs)
+│   │   │   │       ├── AlgorithmParameter.java
+│   │   │   │       ├── AlgorithmRun.java
+│   │   │   │       ├── AuditEvent.java
+│   │   │   │       ├── Book.java
+│   │   │   │       ├── IssueLog.java
+│   │   │   │       ├── Location.java
+│   │   │   │       ├── Member.java
+│   │   │   │       ├── Resource.java
+│   │   │   │       ├── Road.java
+│   │   │   │       └── ServiceRequest.java
+│   │   │   └── structures/             # Custom generic data structures
+│   │   │       ├── BST.java
+│   │   │       ├── BTree.java
+│   │   │       ├── CircularQueue.java
+│   │   │       ├── CustomDeque.java
+│   │   │       ├── CustomLinkedList.java
+│   │   │       ├── CustomQueue.java
+│   │   │       ├── GenericDisjointSet.java
+│   │   │       ├── GenericHashtable.java
+│   │   │       ├── GenericHeap.java
+│   │   │       ├── GenericStack.java
+│   │   │       ├── Graph.java
+│   │   │       └── RedBlackTree.java
+│   │   └── resources/
+│   │       └── schema.sql              # DDL schema definition & performance indexes
+│   └── test/
+│       └── java/                       # Formal test suites & microbenchmarks
+│           ├── algorithms/
+│           │   ├── GraphAlgorithmsTest.java
+│           │   ├── GreedySchedulerTest.java
+│           │   ├── KnapsackTest.java
+│           │   ├── SearchEngineTest.java
+│           │   └── benchmark/
+│           │       └── GraphJmhBenchmark.java
+│           └── structures/
+│               └── DataStructuresEdgeCaseTest.java
 └── README.md
 ```
 
@@ -231,10 +241,10 @@ Compile using `javac` including all library dependencies:
 
 ```bash
 # Windows PowerShell
-javac -cp "sqlite-jdbc-3.36.0.3.jar;lib/*;src/main/resources" -d bin (Get-ChildItem -Recurse -Filter *.java src/main/java).FullName
+javac -cp "sqlite-jdbc-3.36.0.3.jar;lib/*;src/main/resources" -d bin (Get-ChildItem -Recurse -Filter *.java src/main/java, src/test/java).FullName
 
 # Linux / macOS
-javac -cp "sqlite-jdbc-3.36.0.3.jar:lib/*:src/main/resources" -d bin $(find src/main/java -name "*.java")
+javac -cp "sqlite-jdbc-3.36.0.3.jar:lib/*:src/main/resources" -d bin $(find src/main/java src/test/java -name "*.java")
 ```
 
 ### 3. Initialize & Seed Database
@@ -267,14 +277,14 @@ java -cp "bin:sqlite-jdbc-3.36.0.3.jar:src/main/resources" library.Main
 
 ### Running Unit Tests (JUnit 4)
 
-Execute the formal test suites covering graph routing, connectivity, and search algorithms:
+Execute the formal test suites covering graph routing, connectivity, search algorithms, greedy scheduling, knapsack DP, and custom data structures:
 
 ```bash
 # Windows PowerShell
-java -cp "bin;lib/*;sqlite-jdbc-3.36.0.3.jar" org.junit.runner.JUnitCore algorithms.GraphAlgorithmsTest algorithms.SearchEngineTest
+java -cp "bin;lib/*;sqlite-jdbc-3.36.0.3.jar" org.junit.runner.JUnitCore algorithms.GraphAlgorithmsTest algorithms.SearchEngineTest algorithms.GreedySchedulerTest algorithms.KnapsackTest structures.DataStructuresEdgeCaseTest
 
 # Linux / macOS
-java -cp "bin:lib/*:sqlite-jdbc-3.36.0.3.jar" org.junit.runner.JUnitCore algorithms.GraphAlgorithmsTest algorithms.SearchEngineTest
+java -cp "bin:lib/*:sqlite-jdbc-3.36.0.3.jar" org.junit.runner.JUnitCore algorithms.GraphAlgorithmsTest algorithms.SearchEngineTest algorithms.GreedySchedulerTest algorithms.KnapsackTest structures.DataStructuresEdgeCaseTest
 ```
 
 ### Running JMH Microbenchmarks

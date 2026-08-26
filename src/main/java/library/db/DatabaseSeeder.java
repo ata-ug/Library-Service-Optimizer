@@ -53,8 +53,10 @@ public class DatabaseSeeder {
         for (String sql : statements) {
             String trimmed = sql.trim();
             if (!trimmed.isEmpty() && !trimmed.toUpperCase().startsWith("PRAGMA")) {
-                trimmed = trimmed.replaceAll("(?i)\\bCREATE\\s+TABLE\\s+", "CREATE TABLE IF NOT EXISTS ");
-                trimmed = trimmed.replaceAll("(?i)\\bCREATE\\s+INDEX\\s+", "CREATE INDEX IF NOT EXISTS ");
+                if (!trimmed.toUpperCase().contains("IF NOT EXISTS")) {
+                    trimmed = trimmed.replaceAll("(?i)\\bCREATE\\s+TABLE\\s+", "CREATE TABLE IF NOT EXISTS ");
+                    trimmed = trimmed.replaceAll("(?i)\\bCREATE\\s+INDEX\\s+", "CREATE INDEX IF NOT EXISTS ");
+                }
                 try (Connection conn = DatabaseConnection.connect();
                      Statement stmt = conn.createStatement()) {
                     stmt.execute(trimmed);
